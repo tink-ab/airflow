@@ -110,6 +110,7 @@ class KubernetesPodOperator(BaseOperator):
                 cmds=self.cmds,
                 arguments=self.arguments,
                 labels=self.labels,
+                security_context=self.security_context
             )
 
             pod.service_account_name = self.service_account_name
@@ -172,6 +173,7 @@ class KubernetesPodOperator(BaseOperator):
                  is_delete_operator_pod=False,
                  hostnetwork=False,
                  tolerations=None,
+                 security_context=None,
                  *args,
                  **kwargs):
         super(KubernetesPodOperator, self).__init__(*args, **kwargs)
@@ -201,3 +203,4 @@ class KubernetesPodOperator(BaseOperator):
         self.is_delete_operator_pod = is_delete_operator_pod
         self.hostnetwork = hostnetwork
         self.tolerations = tolerations or []
+        self.security_context = security_context
